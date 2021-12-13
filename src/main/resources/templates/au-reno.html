@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<!--  /* fabri */ -->
+
+<html lang:"es" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+      <head>
+        <title>Renombrar autor</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <main>
+            <form th:action="@{/autor/renombra/(__${id}__}" method="POST">
+                <input hidden th:value= "${Autor.id}" name="id">  <!--  <BR> &nbsp; <BR> -->
+                <div class="form-group">
+                <label>Nombre &nbsp; </label>
+                    <input th:value="${Autor.nombre}" type="text" class="form-control" name="nombre" >
+                <BR> &nbsp; <BR>
+                <label>Apellido &nbsp; </label>
+                    <input th:value="${Autor.apellido}" type="text" class="form-control" name="apellido" >
+                <br></div>
+                <button type="submit" class="btn btn-primary">Enviar</button>
+            </form>
+            
+            <footer class="container m-5">
+                <table style="width: 80%; ">
+                    <tr> <td style="vertical-align: top; width: 50%; text-align: left;">
+                            <div th:if="${Ok}!=null" class="card text-white bg-success mb-3" >
+                                <div class="card-body">
+                                    <h5 class="card-title">Correcto</h5>
+                                    <p class="card-text" th:text="${Ok}"></p>
+                                </div></div></td>
+                                <td style="vertical-align: top;text-align: right;">
+                            <div class="card-body">
+                                <h5 class="card-title"><a href="/autor/lista">Volver a la lista</a></h5>
+                            </div>  </td>
+                        <td style="vertical-align: top;text-align: right;">
+                            <div th:if="${Error}!=null" class="card text-white bg-danger mb-3" >
+                                <div class="card-body">
+                                    <h5 class="card-title">Error</h5>
+                                    <p class="card-text" th:utext="${Error}"></p>
+                                </div></div>  </td></tr>
+                </table>
+            </footer>
+
+        </main>
+    </body>
+</html>

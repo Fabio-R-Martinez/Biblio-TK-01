@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<!--  /* fabri */ -->
+
+<html lang:"es" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+      <head>
+        <title>edit-form</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <main>
+
+            <form th:action="@{/editorial/nueva}" method="POST">
+                <div class="form-group">
+                    <label>Nombre &nbsp; </label> <input type="text" class="form-control" name="nombre" placeholder="Nombre de la editorial">
+                </div>
+                <br>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+
+            <footer class="container m-5">
+                <table style="width: 80%; ">
+                    <tr>
+                        <td style="vertical-align: top; width: 50%; text-align: left;">
+                            <div th:if="${Ok}!=null" class="card text-white bg-success mb-3" >
+                                <div class="card-body">
+                                    <h5 class="card-title">Correcto</h5>
+                                    <p class="card-text" th:text="${Ok}"></p>
+                                </div>
+                            </div>    
+                        </td>
+                        <td style="vertical-align: top;text-align: right;">
+                            <div th:if="${Error}!=null" class="card text-white bg-danger mb-3" >
+                                <div class="card-body">
+                                    <h5 class="card-title">Error</h5>
+                                    <p class="card-text" th:utext="${Error}"></p>
+                                </div>
+                            </div>  
+                        </td>
+                    </tr>
+                </table>
+            </footer>
+
+        </main>
+    </body>
+</html>
