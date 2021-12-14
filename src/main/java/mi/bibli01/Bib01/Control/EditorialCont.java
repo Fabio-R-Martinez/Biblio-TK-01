@@ -81,7 +81,7 @@ public class EditorialCont {
     }
 
     @PostMapping("/nombre/{id}")
-    public String Renombrar(ModelMap mod, @PathVariable String id, @RequestParam String nombre) {
+    public String Renombre(ModelMap mod, @PathVariable String id, @RequestParam String apellido) {
         try {
             EdSer.Renombrar(id, nombre);
             mod.put("Ok", "El proceso es adecuado.");

@@ -21,7 +21,7 @@ public interface AutorRepo extends JpaRepository<Autor, String> {
     @Query("Select a From Autor a Where ayn = :ayn")
     public Autor HallaAyn(@Param("ayn") String ayn);
     
-    @Query("Select a From Autor a Where a.id = :id")
+    @Query("Select a From Autor a Where id = :id")
     public Autor HallaId(@Param("id") String id);
     
 }

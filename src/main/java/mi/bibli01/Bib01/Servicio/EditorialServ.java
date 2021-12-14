@@ -89,14 +89,12 @@ public class EditorialServ {
     // Listar Uno
     @Transactional(readOnly = true)
     public Editorial HallarId(String id) throws ErrorMio {
-        Editorial e=new Editorial();
         Optional<Editorial> ed=EdRep.findById(id);
         if (ed.isPresent()) {
-            e=ed.get();
+            return ed.get();
         } else {
             throw new ErrorMio ("No hay editorial con tal id.");
         }
-    return e;
     }    
     
     /* METODOS PRIVADOS */

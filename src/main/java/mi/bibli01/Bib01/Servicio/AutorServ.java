@@ -73,11 +73,12 @@ public class AutorServ {
     public void Renombrar(String id, String nombre, String apellido) {
         // Autor a=new Autor();
         Autor a= AuRep.HallaId(id);
+        if (a!=null){
         a.setNombre(nombre);
         //if (nombre!=null) { a.setNombre(nombre);}
         // if (apellido!=null) {a.setApellido(apellido);}
         //a.setAyn(a.getApellido().trim().toUpperCase()+","+a.getNombre().trim().toLowerCase());
-        AuRep.save(a);
+        AuRep.save(a); }
     }
     
 

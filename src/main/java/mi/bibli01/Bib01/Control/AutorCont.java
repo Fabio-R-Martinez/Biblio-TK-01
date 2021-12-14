@@ -70,6 +70,7 @@ public class AutorCont {
             mod.addAttribute("Autor", au);
             return "au-reno";
         } catch (ErrorMio e) {
+            mod.put("Error", "problem 1");
             return "redirect:/autor/lista";
         }
     }

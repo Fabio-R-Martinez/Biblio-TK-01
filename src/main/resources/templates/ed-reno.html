@@ -10,7 +10,7 @@
     <body>
         <main>
             <form th:action="@{/editorial/nombre/__${id}__}" method="POST">
-                <input hidden th:value= "${id}" name="id">  <!--  <BR> &nbsp; <BR> -->
+                <input  th:value= "${Edit.id}" name="id"> hidden <!--  <BR> &nbsp; <BR> -->
                 <div class="form-group">
                     <label>Nombre &nbsp; </label>
                     <input th:value="${Edit.nombre}" type="text" class="form-control" name="nombre" >
