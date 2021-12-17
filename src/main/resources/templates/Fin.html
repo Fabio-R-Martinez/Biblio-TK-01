@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+
+<h2 class="display-4" th:text="${titulo}"> </h2>
+<p th:utext="${descripcion}"></p>
+<table
+style="text-align: left; width: 90%; margin-left: auto; margin-right: auto;"
+border="0" cellpadding="2" cellspacing="2">
+<tbody>
+<tr>
+<td
+style="vertical-align: middle; background-color: rgb(153, 255, 153); width: 30%; text-align: center;">  ***** <br>
+<div th:if="${Ok}!=null" class="card text-white bg-success mb-3" ><div class="card-body">
+<h5 class="card-title">Correcto</h5> 
+<p class="card-text" th:text="${Ok}"></p>
+</div></div>
+</td>
+<td
+style="vertical-align: middle; background-color: rgb(204, 204, 255); width: 30%; text-align: center;"><br>
+<div class="card-body">
+<h5 class="card-title"><a href="/">Volver al inicio</a></h5>
+<h5 class="card-title"><a href="/autor/lista">Lista de autores</a></h5>
+<h5 class="card-title"><a href="/editorial/lista">Lista de editoriales</a></h5>
+</div>
+</td>
+<td
+style="vertical-align: middle; background-color: rgb(255, 204, 204); width: 30%; text-align: center;"> ----- <br>
+<div th:if="${Error}!=null" class="card text-white bg-danger mb-3" ><div class="card-body">
+<h5 class="card-title">Error</h5><p class="card-text" th:utext="${Error}"></p>
+</div></div>    
+</td>
+</tr>
+</tbody>
+</table>        
+        
+
+
+
+                            
+    
+
+                     
+                    
+                 
+    <button onclick="location.href='/'">Volver a la Pagina de Inicio</button> 
+    </body>
+</html>

@@ -51,24 +51,23 @@ public class AutorServ {
         AuRep.save(a);
     }
 
-    /*
+    
     @Transactional
-    public void Renombrar(String id, String nombre, String apellido) throws ErrorMio {
+    public void Renombrar(String id, String nombre, String apellido) throws ErrorMio { //
         Optional<Autor> au = AuRep.findById(id);
         if (au.isPresent()) {
             Autor a = au.get();
-            a.setNombre(nombre);
-            //if (nombre!=null) { a.setNombre(nombre);}
-                    a.setApellido(apellido);
-            //if (apellido!=null) {a.setApellido(apellido);}
-            //a.setAyn(a.getApellido().trim().toUpperCase()+","+a.getNombre().trim().toLowerCase());
-            //validarDuplicado(a);
+            if (nombre!=null) { a.setNombre(nombre);}
+            if (apellido!=null) {a.setApellido(apellido);}
+            a.setAyn(a.getApellido().trim().toUpperCase()+","+a.getNombre().trim().toLowerCase());
+            // validarDuplicado(a);
             AuRep.save(a);
         } else {
             throw new ErrorMio("No existe el id buscado");
         }
     }
-    */
+    
+    /*
     @Transactional
     public void Renombrar(String id, String nombre, String apellido) {
         // Autor a=new Autor();
@@ -80,6 +79,8 @@ public class AutorServ {
         //a.setAyn(a.getApellido().trim().toUpperCase()+","+a.getNombre().trim().toLowerCase());
         AuRep.save(a); }
     }
+    */
+    
     
 
     // Falta Eliminar: Por ser libros no deberían eliminarse
@@ -103,7 +104,15 @@ public class AutorServ {
         }
         return a;
     }
-
+    
+    /*      METODO PARA ENVIAR UN AUTOR CUALQUIERA A LIBRO, PRUEBA DE LIBRO
+    
+    @Transactional(readOnly = true)
+public Autor HallarId(String id) throws ErrorMio {
+        Autor a = new Autor();
+        
+}
+    */
     /* METODOS PRIVADOS */
     
     private Autor Formar(String nombre, String apellido) {

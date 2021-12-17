@@ -1,5 +1,4 @@
 /* @author fabri  */
-
 package mi.bibli01.Bib01.Control;
 
 import java.util.List;
@@ -15,7 +14,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-
 @Controller
 @RequestMapping("/editorial")
 public class EditorialCont {
@@ -29,14 +27,20 @@ public class EditorialCont {
     }
 
     @PostMapping("/nueva")
-    public String Guardar(ModelMap modelo, String nombre) {
+    public String Guardar(ModelMap mod, String nombre) throws ErrorMio {
         try {
             EdSer.Agregar(nombre);
-            modelo.put("Ok", "La editorial fue agregada");
-            return "ed-form";//nombre del HTML
+            //mod.put("Ok", "La editorial fue agregada");
+            //return "ed-form";//nombre del HTML
+            mod.put("titulo", "EDITORIAL");
+            mod.put("descripcion", "Se agregó una editorial <br>");
+            return "index.html";
         } catch (ErrorMio e) {
-            modelo.put("Error", "No se pudo anañdir la información <br>" + e.getMessage());
-            return "ed-form";//nombre del HTML
+            //mod.put("Error", "No se pudo anadir la información <br>" + e.getMessage());
+            //return "ed-form";//nombre del HTML
+            mod.put("titulo", "EDITORIAL");
+            mod.put("descripcion", "No se pudo anadir la editorial <br>" + e.getMessage());
+            return "index.html";
         }
     }
 
@@ -59,12 +63,17 @@ public class EditorialCont {
     public String CambiarEstado(@PathVariable String id, ModelMap mod) {
         try {
             EdSer.Alternar(id);
-            mod.put("Ok", "Se modificó el estado.");
-            return "redirect:/editorial/lista";
+            //mod.put("Ok", "Se modificó el estado.");
+            //return "redirect:/editorial/lista";
+            mod.put("titulo", "EDITORIAL");
+            mod.put("descripcion", "Se cambió el estado de la editorial <br>");
+            return "index.html";
         } catch (ErrorMio e) {
-            mod.put("Problema!", "No se pudo modificar el estado <br>" + e.getMessage());
-            return "redirect:/editorial/lista";
-            // } finally {
+            //mod.put("Problema!", "No se pudo modificar el estado <br>" + e.getMessage());
+            //return "redirect:/editorial/lista";
+            mod.put("titulo", "EDITORIAL");
+            mod.put("descripcion", "No se pudo modificar el estado de la editorial <br>" + e.getMessage());
+            return "index.html";
         }
     }
 
@@ -81,14 +90,20 @@ public class EditorialCont {
     }
 
     @PostMapping("/nombre/{id}")
-    public String Renombre(ModelMap mod, @PathVariable String id, @RequestParam String apellido) {
+    public String Renombre(ModelMap mod, @PathVariable String id, @RequestParam String nombre) {
         try {
             EdSer.Renombrar(id, nombre);
-            mod.put("Ok", "El proceso es adecuado.");
-            return "redirect:/editorial/lista";
+            //mod.put("Ok", "El proceso es adecuado.");
+            //return "redirect:/editorial/lista";
+            mod.put("titulo", "EDITORIAL");
+            mod.put("descripcion", "Se modificó el nombre de la editorial");
+            return "index.html";
         } catch (ErrorMio e) {
-            mod.put("Error", "Todo sigue igual (mal o peor)");
-            return "redirect:/editorial/lista";
+            //mod.put("Error", "Todo sigue igual (mal o peor)");
+            //return "redirect:/editorial/lista";
+            mod.put("titulo", "EDITORIAL");
+            mod.put("descripcion", "No se pudo modificar el nombre de la editorial <br>" + e.getMessage());
+            return "index.html";
         }
     }
 

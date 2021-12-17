@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+
+<html lang:"es" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+      <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            button { width: 90px; height: 30px; }
+            button#frig1 { width: 120px; height: 30px; border-radius: 8px;}
+            button#frig2 { width: 120px; height: 30px; border-radius: 8px;}
+            .faut1 {display: block;}
+            .faut2 {display: none;}
+            .fedi1 {display: block;}
+            .fedi2 {display: none;}
+        </style>
+    </head>
+    <body onload="fxT()">
+
+        <blockquote>
+            <form th:action="@{/libro/nuevo}" method="POST">
+                <div class="form-group"><label>Título &nbsp; </label>
+                    <input type="text" class="form-control" name="titulo" placeholder="Título"> <br> &nbsp; <br> 
+                    <label >Autor Lista &nbsp; </label> 
+                    <input list="Lista_De_Autores" name="AutorId" /> &nbsp; 
+                    <datalist id="Lista_De_Autores">
+                        <option value="Chocolate">
+                        <option value="Mint">
+                        <option value="Strawberry">
+                        <option value="Vanilla">
+                    </datalist>
+
+                    <label >Autor Cuadro &nbsp; </label>  <input type="text" class="form-control" name="Autor2" placeholder="Autor"> &nbsp; 
+                </div> <br>
+
+                <div class="form-group">
+                    <label >Editorial Lista &nbsp; </label> 
+                    <input list="Lista_De_Editoriales" name="EditId" /> &nbsp; 
+                    <datalist id="Lista_De_Editoriales">
+                        <option value="Chocolate">
+                        <option value="Coconut">
+                        <option value="Mint">
+                        <option value="Vanilla">
+                    </datalist>
+                    <label >Editorial Cuadro &nbsp; </label> <input type="text" class="form-control" name="Edit2" placeholder="Editorial">
+                    <br> &nbsp; <br>
+                    <label>Año de publicación &nbsp; </label>
+                    <input type="number" class="form-control" name="Year" value="0" min="1860" max="2023"></div> 
+                <br>
+                <label for="phone">ISBN &nbsp; </label>
+                <input type="TEXT" name="isbn" pattern="[0-9]{3}-[0-9]{5}-[0-9]{5}">  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp; 
+                <label for="phone">EAN &nbsp; </label> 
+                <input type="tel" name="ean" pattern="[0-9]{1}-[0-9]{6}-[0-9]{6}"> <br>
+                <small>isbn 10: 12345-67890 &nbsp; isbn 13: 123-12345-67890 &nbsp; EAN: 1-123456-123456 </small> <br>
+                <div class="form-group"><label >Ejemplares &nbsp; </label>
+                    <input type="number" class="form-control" name="ejes" value="1" min="1" max="50"></div> <br>
+
+                <button type="submit" class="btn btn-primary">Enviar</button>
+            </form> <hr>
+        </blockquote>
+
+        <h2 class="display-4" th:text="${titulo}"> </h2>
+        <p th:utext="${descripcion}"></p>
+        <table
+            style="text-align: left; width: 90%; margin-left: auto; margin-right: auto;"
+            border="0" cellpadding="2" cellspacing="2">
+            <tbody>
+                <tr>
+                    <td style="vertical-align: middle; background-color: #ccffcc; width: 30%; text-align: center;"> &nbsp; <br>
+                        <div th:if="${Ok}!=null" class="card text-white bg-success mb-3" ><div class="card-body">
+                                <h6 class="card-title">Correcto</h6> 
+                                <p class="card-text" th:text="${Ok}"></p>
+                            </div></div>
+                    </td>
+                    <td style="vertical-align: middle; background-color: #ffcccc; width: 30%; text-align: center;">
+                        <br>
+                        <div class="card-body">
+                            <p align=center class="card-title">
+                                <button onclick="location.href='/'"> Inicio</button>  <br> &nbsp; <br> 
+                                <button onclick="location.href='/autor/lista'">Autores</button>  &nbsp; 
+                                <button onclick="location.href='/editorial/lista'">Editoriales</button>  &nbsp; 
+                                <button onclick="">Libros</button>
+                            </p></div>
+                        <!--
+                        <p class="card-title"><a href="/">Volver al inicio</a></p>
+                        <p class="card-title"><a href="/autor/lista">Lista de autores</a></p>
+                        <p class="card-title"><a href="/editorial/lista">Lista de editoriales</a></p>
+                        -->
+                    </td>
+                    <td style="vertical-align: middle; background-color: #99ccff; width: 30%; text-align: center;"> &nbsp; <br>
+                        <div th:if="${Error}!=null" class="card text-white bg-danger mb-3" ><div class="card-body">
+                                <h6 class="card-title">Error</h6><p class="card-text" th:utext="${Error}"></p>
+                            </div></div>    
+                    </td>
+                </tr>
+            </tbody>
+        </table>        
+
+
+        <blockquote> <hr>
+            <h4>Esto sí­ funciona</h4>
+            <div id="frig2">Lista de utores <button id="frig2" type="button" onclick="fxA()"> Esconde eso </button></div>
+            <div id="frig1"> <button type="button" id="frig1" onclick="fxAu()">Muestra aquello</button> Cuadro de utor nuevo </div>
+            <p id="myP">This is a p element.</p>
+
+            <script>
+                function fxA() {
+                document.getElementById("frig1").style.display = "block";
+                document.getElementById("frig2").style.display= "none";
+                }
+                function fxAu() {
+                document.getElementById("frig1").style.display = "none";
+                document.getElementById("frig2").style.display = "block";
+                }
+                function fxE() {
+                document.getElementById("fedi1").style.display = "block";
+                document.getElementById("fedi2").style.display= "none";
+                }
+                function fxEd() {
+                document.getElementById("fedi1").style.display = "nome";
+                document.getElementById("fedi2").style.display= "block";
+                }
+                function fxT()  {
+                document.getElementById("frig1").style.display = "block";
+                document.getElementById("frig2").style.display= "none";
+                document.getElementById("fedi1").style.display = "block";
+                document.getElementById("fedi2").style.display= "none";
+                }
+            </script>
+            <hr>
+        </blockquote>
+
+    </body>
+</html> 
